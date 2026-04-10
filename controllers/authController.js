@@ -24,23 +24,7 @@ export const signup = async (req, res) => {
 
         console.log('save',savedUser)
     
-        // const token = jwt.sign({ userId: savedUser._id }, process.env.JWT_SECRET, { expiresIn: "5m" });
-    
-        // const verifyLink = `${process.env.FRONT_URL}/verify-email?token=${token}`;
-    
-        // const transporter = nodemailer.createTransport({
-        //   service: "gmail",
-        //   auth: {
-        //     user: process.env.EMAIL,  
-        //     pass: process.env.PASSWORD 
-        //   },
-        // });
-    
-        // await transporter.sendMail({
-        //   to: email,
-        //   subject: "Verify your Email",
-        //   html: `Click the link to verify your account: <a href="${verifyLink}">Verify Email</a>`,
-        // });
+       
     
         res.status(201).json({success:true, message: "User registered successfully", userId: savedUser._id });
       } catch (error) {

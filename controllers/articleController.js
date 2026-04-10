@@ -12,7 +12,6 @@ export const create_article = async (req, res) => {
       });
     }
 
-    // ✅ Create article
     const article = await Article.create({
       title,
       description,
@@ -21,7 +20,6 @@ export const create_article = async (req, res) => {
       author: id,
     });
 
-    // ✅ Response
     res.status(201).json({
       success: true,
       message: "Article created successfully",
@@ -50,7 +48,6 @@ export const fetch_article = async (req, res) => {
 
     const query = {};
 
-    // 🔍 Search by title or description
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: "i" } },
@@ -58,7 +55,6 @@ export const fetch_article = async (req, res) => {
       ];
     }
 
-    // 🏷 Filter by tag
     if (tag) {
       query.tags = tag;
     }
@@ -66,7 +62,7 @@ export const fetch_article = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const articles = await Article.find(query)
-      .sort({ createdAt: -1 }) // latest first
+      .sort({ createdAt: -1 }) 
       .skip(skip)
       .limit(Number(limit));
 

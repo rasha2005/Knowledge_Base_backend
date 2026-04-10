@@ -12,7 +12,6 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
-    // ✅ Try verifying access token
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
     req.user = decoded;
     return next();
@@ -58,7 +57,6 @@ const authMiddleware = (req, res, next) => {
       }
     }
 
-    // ❌ Other errors (invalid token etc.)
     return res.status(401).json({
       success: false,
       message: "Invalid token",
